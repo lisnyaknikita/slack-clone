@@ -10,16 +10,10 @@ import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { useAuthActions } from '@convex-dev/auth/react'
 import { TriangleAlert } from 'lucide-react'
-import type { Metadata } from 'next'
 import { useState } from 'react'
 import { FaGithub } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
 import { SignInFlow } from '../types'
-
-export const metadata: Metadata = {
-	title: '',
-	description: '',
-}
 
 interface ISignUpCardProps {
 	setState: (state: SignInFlow) => void
@@ -28,6 +22,7 @@ interface ISignUpCardProps {
 export default function SignUpCard({ setState }: ISignUpCardProps) {
 	const { signIn } = useAuthActions()
 
+	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [confirmPassword, setConfirmPassword] = useState('')
@@ -48,7 +43,7 @@ export default function SignUpCard({ setState }: ISignUpCardProps) {
 		}
 
 		setPending(true)
-		signIn('password', { email, password, flow: 'signUp' })
+		signIn('password', { name, email, password, flow: 'signUp' })
 			.catch(() => {
 				setError('Something went wrong')
 			})
@@ -73,6 +68,14 @@ export default function SignUpCard({ setState }: ISignUpCardProps) {
 			)}
 			<CardContent className='space-y-5 px-0 pb-0'>
 				<form onSubmit={onPasswordSignUp} className='space-y-2.5'>
+					<Input
+						disabled={pending}
+						value={name}
+						onChange={e => setName(e.target.value)}
+						placeholder='Full name'
+						type='text'
+						required
+					/>
 					<Input
 						disabled={pending}
 						value={email}
