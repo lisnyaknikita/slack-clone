@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
+import { useAuthActions } from '@convex-dev/auth/react'
 import type { Metadata } from 'next'
 import { useState } from 'react'
 import { FaGithub } from 'react-icons/fa'
@@ -24,8 +25,14 @@ interface ISignInCardProps {
 }
 
 export default function SignInCard({ setState }: ISignInCardProps) {
+	const { signIn } = useAuthActions()
+
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+
+	const handleProviderSignIn = (value: 'github' | 'google') => {
+		signIn(value)
+	}
 
 	return (
 		<Card className='w-full h-full p-8'>
@@ -72,7 +79,7 @@ export default function SignInCard({ setState }: ISignInCardProps) {
 					<Button
 						className='w-full relative'
 						disabled={false}
-						onClick={() => {}}
+						onClick={() => handleProviderSignIn('github')}
 						variant={'outline'}
 						size={'lg'}
 					>
