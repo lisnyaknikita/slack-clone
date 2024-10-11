@@ -13,7 +13,7 @@ import { useEffect, useMemo } from 'react'
 import VerificationInput from 'react-verification-input'
 import { toast } from 'sonner'
 
-export default function Page() {
+export default function JoinPage() {
 	const router = useRouter()
 	const workspaceId = useWorkspaceId()
 
