@@ -6,6 +6,7 @@ import { Loader } from 'lucide-react'
 import { useState } from 'react'
 import { Id } from '../../convex/_generated/dataModel'
 import { ChannelHero } from './channel-hero'
+import { ConversationHero } from './conversation-hero'
 import { Message } from './message'
 
 const TIME_THRESHOLD = 5
@@ -94,6 +95,7 @@ export const MessageList = ({
 								hideThreadButton={variant === 'thread'}
 								threadCount={message?.threadCount}
 								threadImage={message?.threadImage}
+								threadName={message?.threadName}
 								threadTimestamp={message?.threadTimestamp}
 							/>
 						)
@@ -128,6 +130,7 @@ export const MessageList = ({
 			{variant === 'channel' && channelName && channelCreationTime && (
 				<ChannelHero name={channelName} creationTime={channelCreationTime} />
 			)}
+			{variant === 'conversation' && <ConversationHero name={memberName} image={memberImage} />}
 		</div>
 	)
 }
