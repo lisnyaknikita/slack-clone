@@ -4,6 +4,7 @@ import { useCurrentMember } from '@/features/members/api/use-current-member'
 import { useGetMembers } from '@/features/members/api/use-get-members'
 import { useGetWorkspace } from '@/features/workspaces/api/use-get-workspace'
 import { useChannelId } from '@/hooks/use-channel-id'
+import { useMemberId } from '@/hooks/use-member-id'
 import { useWorkspaceId } from '@/hooks/use-workspace-id'
 import { AlertTriangle, HashIcon, Loader, MessageSquareText, SendHorizonal } from 'lucide-react'
 import { SidebarItem } from './sidebar-item'
@@ -12,6 +13,7 @@ import { WorkspaceHeader } from './workspace-header'
 import { WorkspaceSection } from './workspace-section'
 
 export const WorkspaceSidebar = () => {
+	const memberId = useMemberId()
 	const channelId = useChannelId()
 	const workspaceId = useWorkspaceId()
 
@@ -19,8 +21,8 @@ export const WorkspaceSidebar = () => {
 
 	const { data: member, isLoading: memberLoading } = useCurrentMember({ workspaceId })
 	const { data: workspace, isLoading: workspaceLoading } = useGetWorkspace({ id: workspaceId })
-	const { data: channels, isLoading: channelsLoading } = useGetChannels({ workspaceId })
-	const { data: members, isLoading: membersLoading } = useGetMembers({ workspaceId })
+	const { data: channels, isLoading: _channelsLoading } = useGetChannels({ workspaceId })
+	const { data: members, isLoading: _membersLoading } = useGetMembers({ workspaceId })
 
 	if (workspaceLoading || memberLoading) {
 		return (
@@ -62,7 +64,15 @@ export const WorkspaceSidebar = () => {
 				))}
 			</WorkspaceSection>
 			<WorkspaceSection label='Direct Messages' hint='New direct message' onNew={() => {}}>
-				{members?.map(item => <UserItem key={item._id} id={item._id} label={item.user.name} image={item.user.image} />)}
+				{members?.map(item => (
+					<UserItem
+						key={item._id}
+						id={item._id}
+						label={item.user.name}
+						image={item.user.image}
+						variant={item._id === memberId ? 'active' : 'default'}
+					/>
+				))}
 			</WorkspaceSection>
 		</div>
 	)
