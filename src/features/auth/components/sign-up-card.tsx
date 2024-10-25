@@ -1,11 +1,5 @@
 import { Button } from '@/components/ui/button'
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { useAuthActions } from '@convex-dev/auth/react'
@@ -56,9 +50,7 @@ export default function SignUpCard({ setState }: ISignUpCardProps) {
 		<Card className='w-full h-full p-8'>
 			<CardHeader className='px-0 pt-0'>
 				<CardTitle>Sign up to continue</CardTitle>
-				<CardDescription>
-					Use your email or another service to continue
-				</CardDescription>
+				<CardDescription>Use your email or another service to continue</CardDescription>
 			</CardHeader>
 			{!!error && (
 				<div className='bg-destructive/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-destructive mb-6'>
@@ -100,12 +92,7 @@ export default function SignUpCard({ setState }: ISignUpCardProps) {
 						type='password'
 						required
 					/>
-					<Button
-						type='submit'
-						className='w-full'
-						size={'lg'}
-						disabled={pending}
-					>
+					<Button type='submit' className='w-full' size={'lg'} disabled={pending}>
 						Continue
 					</Button>
 				</form>
@@ -134,10 +121,7 @@ export default function SignUpCard({ setState }: ISignUpCardProps) {
 				</div>
 				<p className='text-xs text-muted-foreground'>
 					Already have an account?{' '}
-					<span
-						className='text-sky-700 hover:underline cursor-pointer'
-						onClick={() => setState('signIn')}
-					>
+					<span className='text-sky-700 hover:underline cursor-pointer' onClick={() => setState('signIn')}>
 						Sign in
 					</span>{' '}
 				</p>

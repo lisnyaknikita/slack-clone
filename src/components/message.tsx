@@ -73,7 +73,7 @@ export const Message = ({
 
 	const [ConfirmDialog, confirm] = useConfirm('Delete message', 'Are you sure you want to delete this message?')
 
-	const { mutate: removeMessage, isPending: isRemovingMessage } = useRemoveMessage()
+	const { mutate: removeMessage, isPending: _isRemovingMessage } = useRemoveMessage()
 	const { mutate: updateMessage, isPending: isUpdatingMessage } = useUpdateMessage()
 	const { mutate: toggleReaction, isPending: isTogglingReaction } = useToggleReaction()
 

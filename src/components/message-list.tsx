@@ -79,18 +79,19 @@ export const MessageList = ({
 						return (
 							<Message
 								key={message?._id}
-								id={message?._id}
-								memberId={message?.memberId}
+								id={message!._id}
+								memberId={message!.memberId}
 								authorImage={message?.user.image}
 								authorName={message?.user.name}
 								isAuthor={message?.memberId === currentMember?._id}
-								reactions={message?.reactions}
-								body={message?.body}
+								reactions={message!.reactions}
+								body={message!.body}
 								image={message?.image}
 								updatedAt={message?.updatedAt}
-								createdAt={message?._creationTime}
+								createdAt={message!._creationTime}
 								isEditing={editingId === message?._id}
 								setEditingId={setEditingId}
+								//@ts-ignore
 								isCompact={isCompact}
 								hideThreadButton={variant === 'thread'}
 								threadCount={message?.threadCount}
