@@ -13,12 +13,12 @@ export const WorkspaceSwitcher = () => {
 	const router = useRouter()
 
 	const workspaceId = useWorkspaceId()
-	const [_open, setOpen] = useCreateWorkspaceModal()
+	const [, setOpen] = useCreateWorkspaceModal()
 
 	const { data: workspace, isLoading: workspaceLoading } = useGetWorkspace({ id: workspaceId })
-	const { data: workspaces, isLoading: _workspacesLoading } = useGetWorkspaces()
+	const { data: workspaces } = useGetWorkspaces()
 
-	const filteredWorkspaces = workspaces?.filter((workspace: any) => workspace?._id !== workspaceId)
+	const filteredWorkspaces = workspaces?.filter(workspace => workspace?._id !== workspaceId)
 
 	return (
 		<DropdownMenu>

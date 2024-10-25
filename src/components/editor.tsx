@@ -130,8 +130,8 @@ const Editor = ({
 			toolbarElement.classList.toggle('hidden')
 		}
 	}
-
-	const onEmojiSelect = (emoji: any) => {
+	//@ts-expect-error
+	const onEmojiSelect = emoji => {
 		const quill = quillRef.current
 
 		quill?.insertText(quill?.getSelection()?.index || 0, emoji.native)
