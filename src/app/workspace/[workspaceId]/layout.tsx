@@ -1,6 +1,7 @@
 'use client'
 
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable'
+import { Profile } from '@/features/members/components/profile'
 import { Thread } from '@/features/messages/components/thread'
 import { usePanel } from '@/hooks/use-panel'
 import { Loader } from 'lucide-react'
@@ -15,9 +16,9 @@ interface IWorkspaceIdLayoutProps {
 }
 
 const WorkspaceIdLayout = ({ children }: IWorkspaceIdLayoutProps) => {
-	const { parentMessageId, onClose } = usePanel()
+	const { parentMessageId, profileMemberId, onClose } = usePanel()
 
-	const showPanel = !!parentMessageId
+	const showPanel = !!parentMessageId || !!profileMemberId
 
 	return (
 		<div className='h-ful'>
@@ -36,6 +37,8 @@ const WorkspaceIdLayout = ({ children }: IWorkspaceIdLayoutProps) => {
 							<ResizablePanel minSize={20} defaultSize={29}>
 								{parentMessageId ? (
 									<Thread messageId={parentMessageId as Id<'messages'>} onClose={onClose} />
+								) : profileMemberId ? (
+									<Profile memberId={profileMemberId as Id<'members'>} onClose={onClose} />
 								) : (
 									<div className='flex h-full items-center justify-center'>
 										<Loader className='size-5 animate-spin text-muted-foreground' />
