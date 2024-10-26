@@ -73,7 +73,7 @@ export const Thread = ({ messageId, onClose }: IThreadProps) => {
 			}
 
 			if (image) {
-				const url = await generateUploadUrl({}, { throwError: true })
+				const url = await generateUploadUrl({ throwError: true })
 
 				if (!url) {
 					throw new Error('Url not found')
@@ -96,7 +96,8 @@ export const Thread = ({ messageId, onClose }: IThreadProps) => {
 
 			await createMessage(values, { throwError: true })
 			setEditorKey(prev => prev + 1)
-		} catch (error) {
+		} catch (e) {
+			console.error(e)
 			toast.error('Failed to send message')
 		} finally {
 			setIsPending(false)

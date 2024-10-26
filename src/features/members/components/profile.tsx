@@ -36,8 +36,8 @@ export const Profile = ({ memberId, onClose }: IProfileProps) => {
 	const { data: member, isLoading: isLoadingMember } = useGetMember({ id: memberId })
 	const { data: currentMember, isLoading: isLoadingCurrentMember } = useCurrentMember({ workspaceId })
 
-	const { mutate: updateMember, isPending: _isUpdatingMember } = useUpdateMember()
-	const { mutate: removeMember, isPending: _isRemovingMember } = useRemoveMember()
+	const { mutate: updateMember } = useUpdateMember()
+	const { mutate: removeMember } = useRemoveMember()
 
 	const onRemove = async () => {
 		const ok = await confirmRemove()
