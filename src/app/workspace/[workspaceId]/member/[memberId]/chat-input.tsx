@@ -45,7 +45,7 @@ export const ChatInput = ({ placeholder, conversationId }: IChatInputProps) => {
 			}
 
 			if (image) {
-				const url = await generateUploadUrl({}, { throwError: true })
+				const url = await generateUploadUrl({ throwError: true })
 
 				if (!url) {
 					throw new Error('Url not found')
@@ -68,7 +68,8 @@ export const ChatInput = ({ placeholder, conversationId }: IChatInputProps) => {
 
 			await createMessage(values, { throwError: true })
 			setEditorKey(prev => prev + 1)
-		} catch (_) {
+		} catch (e) {
+			console.error(e)
 			toast.error('Failed to send message')
 		} finally {
 			setIsPending(false)

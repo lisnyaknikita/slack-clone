@@ -8,7 +8,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/t
 interface IEmojiPopoverProps {
 	children: React.ReactNode
 	hint?: string
-	//@ts-ignore
+	//@ts-expect-error fix
 	onEmojiSelect: (emoji) => void
 }
 
@@ -16,7 +16,7 @@ export const EmojiPopover = ({ children, onEmojiSelect, hint = 'Emoji' }: IEmoji
 	const [popoverOpen, setPopoverOpen] = useState(false)
 	const [tooltipOpen, setTooltipOpen] = useState(false)
 
-	//@ts-ignore
+	//@ts-expect-error fix
 	const onSelect = emoji => {
 		onEmojiSelect(emoji)
 		setPopoverOpen(false)

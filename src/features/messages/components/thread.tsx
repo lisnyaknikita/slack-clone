@@ -190,7 +190,7 @@ export const Thread = ({ messageId, onClose }: IThreadProps) => {
 									createdAt={message!._creationTime}
 									isEditing={editingId === message?._id}
 									setEditingId={setEditingId}
-									//@ts-ignore
+									//@ts-expect-error fix
 									isCompact={isCompact}
 									hideThreadButton
 									threadCount={message?.threadCount}
